@@ -49,6 +49,7 @@ else()
 		init.c
 		led.c
 		sdio.c
+		mtd.cpp
 		spi.cpp
 		timer_config.cpp
 		usb.c

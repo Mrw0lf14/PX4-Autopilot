@@ -367,8 +367,8 @@
 
 #define GPIO_UART7_RX    GPIO_UART7_RX_3    /* PE7  */
 #define GPIO_UART7_TX    GPIO_UART7_TX_3    /* PE8  */
-#define GPIO_UART7_RTS   GPIO_UART7_RTS_1   /* PE9  */
-#define GPIO_UART7_CTS   GPIO_UART7_CTS_1   /* PE10 */
+// #define GPIO_UART7_RTS   GPIO_UART7_RTS_1   /* PE9  */
+// #define GPIO_UART7_CTS   GPIO_UART7_CTS_1   /* PE10 */
 
 #define GPIO_UART8_RX    GPIO_UART8_RX_1    /* PE0  */
 #define GPIO_UART8_TX    GPIO_UART8_TX_1    /* PE1  */
@@ -379,8 +379,8 @@
  * CAN1 is routed to transceiver.
  */
 
-#define GPIO_CAN1_RX     GPIO_CAN1_RX_3     /* PD0  */
-#define GPIO_CAN1_TX     GPIO_CAN1_TX_3     /* PD1  */
+// #define GPIO_CAN1_RX     GPIO_CAN1_RX_3     /* PD0  */
+// #define GPIO_CAN1_TX     GPIO_CAN1_TX_3     /* PD1  */
 
 /* SPI
  *
@@ -396,17 +396,17 @@
 #define GPIO_SPI1_MOSI   GPIO_SPI1_MOSI_3               /* PD7  */
 #define GPIO_SPI1_SCK    ADJ_SLEW_RATE(GPIO_SPI1_SCK_1) /* PA5  */
 
-#define GPIO_SPI2_MISO   GPIO_SPI2_MISO_1               /* PB14 */
-#define GPIO_SPI2_MOSI   GPIO_SPI2_MOSI_1               /* PB15 */
-#define GPIO_SPI2_SCK    ADJ_SLEW_RATE(GPIO_SPI2_SCK_4) /* PB13 */
+#define GPIO_SPI2_MISO   GPIO_SPI2_MISO_2               /* PC2  */
+#define GPIO_SPI2_MOSI   GPIO_SPI2_MOSI_2               /* PC1  */
+#define GPIO_SPI2_SCK    ADJ_SLEW_RATE(GPIO_SPI2_SCK_5) /* PD3  */
 
-#define GPIO_SPI3_MISO   GPIO_SPI3_MISO_1               /* PB4  */
-#define GPIO_SPI3_MOSI   GPIO_SPI3_MOSI_4               /* PB5  */
-#define GPIO_SPI3_SCK    ADJ_SLEW_RATE(GPIO_SPI3_SCK_1) /* PB3  */
+#define GPIO_SPI3_MISO   GPIO_SPI3_MISO_2               /* PC11 */
+#define GPIO_SPI3_MOSI   GPIO_SPI3_MOSI_3               /* PB2  */
+#define GPIO_SPI3_SCK    ADJ_SLEW_RATE(GPIO_SPI3_SCK_2) /* PC10 */
 
-#define GPIO_SPI4_MISO   GPIO_SPI4_MISO_1               /* PE13 */
-#define GPIO_SPI4_MOSI   GPIO_SPI4_MOSI_1               /* PE14 */
-#define GPIO_SPI4_SCK    ADJ_SLEW_RATE(GPIO_SPI4_SCK_1) /* PE12 */
+#define GPIO_SPI4_MISO   GPIO_SPI4_MISO_2               /* PE5 */
+#define GPIO_SPI4_MOSI   GPIO_SPI4_MOSI_2               /* PE6 */
+#define GPIO_SPI4_SCK    ADJ_SLEW_RATE(GPIO_SPI4_SCK_2) /* PE2 */
 
 /* I2C
  *
@@ -422,11 +422,11 @@
 #define GPIO_I2C1_SCL_GPIO                  (GPIO_OUTPUT | GPIO_OPENDRAIN | GPIO_SPEED_50MHz | GPIO_OUTPUT_SET | GPIO_PORTB | GPIO_PIN6)
 #define GPIO_I2C1_SDA_GPIO                  (GPIO_OUTPUT | GPIO_OPENDRAIN | GPIO_SPEED_50MHz | GPIO_OUTPUT_SET | GPIO_PORTB | GPIO_PIN7)
 
-#define GPIO_I2C2_SCL GPIO_I2C2_SCL_1       /* PB10 */
-#define GPIO_I2C2_SDA GPIO_I2C2_SDA_1       /* PB11 */
+#define GPIO_I2C3_SCL GPIO_I2C3_SCL_1       /* PA8 */
+#define GPIO_I2C3_SDA GPIO_I2C3_SDA_1       /* PC9 */
 
-#define GPIO_I2C2_SCL_GPIO                  (GPIO_OUTPUT | GPIO_OPENDRAIN | GPIO_SPEED_50MHz | GPIO_OUTPUT_SET | GPIO_PORTB | GPIO_PIN10)
-#define GPIO_I2C2_SDA_GPIO                  (GPIO_OUTPUT | GPIO_OPENDRAIN | GPIO_SPEED_50MHz | GPIO_OUTPUT_SET | GPIO_PORTB | GPIO_PIN11)
+#define GPIO_I2C3_SCL_GPIO                  (GPIO_OUTPUT | GPIO_OPENDRAIN | GPIO_SPEED_50MHz | GPIO_OUTPUT_SET | GPIO_PORTA | GPIO_PIN8)
+#define GPIO_I2C3_SDA_GPIO                  (GPIO_OUTPUT | GPIO_OPENDRAIN | GPIO_SPEED_50MHz | GPIO_OUTPUT_SET | GPIO_PORTC | GPIO_PIN9)
 
 /* SDMMC1
  *
@@ -456,38 +456,38 @@
 
 /* Board provides GPIO or other Hardware for signaling to timing analyzer */
 
-#if defined(CONFIG_BOARD_USE_PROBES)
-# include "stm32_gpio.h"
-# define PROBE_N(n) (1<<((n)-1))
-# define PROBE_1    (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTI|GPIO_PIN0)   /* PI0 AUX1 */
-# define PROBE_2    (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTH|GPIO_PIN12)  /* PH12 AUX2 */
-# define PROBE_3    (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTH|GPIO_PIN11)  /* PH11 AUX3 */
-# define PROBE_4    (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTH|GPIO_PIN10)  /* PH10 AUX4 */
-# define PROBE_5    (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTD|GPIO_PIN13)  /* PD13 AUX5 */
-# define PROBE_6    (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTD|GPIO_PIN14)  /* PD14 AUX6 */
-# define PROBE_7    (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTH|GPIO_PIN6)   /* PH6  AUX7 */
-# define PROBE_8    (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTH|GPIO_PIN9)   /* PH9  AUX8 */
-# define PROBE_9    (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTE|GPIO_PIN11)  /* PE11  CAP1 */
+// #if defined(CONFIG_BOARD_USE_PROBES)
+// # include "stm32_gpio.h"
+// # define PROBE_N(n) (1<<((n)-1))
+// # define PROBE_1    (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTI|GPIO_PIN0)   /* PI0 AUX1 */
+// # define PROBE_2    (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTH|GPIO_PIN12)  /* PH12 AUX2 */
+// # define PROBE_3    (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTH|GPIO_PIN11)  /* PH11 AUX3 */
+// # define PROBE_4    (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTH|GPIO_PIN10)  /* PH10 AUX4 */
+// # define PROBE_5    (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTD|GPIO_PIN13)  /* PD13 AUX5 */
+// # define PROBE_6    (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTD|GPIO_PIN14)  /* PD14 AUX6 */
+// # define PROBE_7    (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTH|GPIO_PIN6)   /* PH6  AUX7 */
+// # define PROBE_8    (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTH|GPIO_PIN9)   /* PH9  AUX8 */
+// # define PROBE_9    (GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_CLEAR|GPIO_PORTE|GPIO_PIN11)  /* PE11  CAP1 */
 
-# define PROBE_INIT(mask) \
-	do { \
-		if ((mask)& PROBE_N(1)) { stm32_configgpio(PROBE_1); } \
-		if ((mask)& PROBE_N(2)) { stm32_configgpio(PROBE_2); } \
-		if ((mask)& PROBE_N(3)) { stm32_configgpio(PROBE_3); } \
-		if ((mask)& PROBE_N(4)) { stm32_configgpio(PROBE_4); } \
-		if ((mask)& PROBE_N(5)) { stm32_configgpio(PROBE_5); } \
-		if ((mask)& PROBE_N(6)) { stm32_configgpio(PROBE_6); } \
-		if ((mask)& PROBE_N(7)) { stm32_configgpio(PROBE_7); } \
-		if ((mask)& PROBE_N(8)) { stm32_configgpio(PROBE_8); } \
-		if ((mask)& PROBE_N(9)) { stm32_configgpio(PROBE_9); } \
-	} while(0)
+// # define PROBE_INIT(mask) \
+// 	do { \
+// 		if ((mask)& PROBE_N(1)) { stm32_configgpio(PROBE_1); } \
+// 		if ((mask)& PROBE_N(2)) { stm32_configgpio(PROBE_2); } \
+// 		if ((mask)& PROBE_N(3)) { stm32_configgpio(PROBE_3); } \
+// 		if ((mask)& PROBE_N(4)) { stm32_configgpio(PROBE_4); } \
+// 		if ((mask)& PROBE_N(5)) { stm32_configgpio(PROBE_5); } \
+// 		if ((mask)& PROBE_N(6)) { stm32_configgpio(PROBE_6); } \
+// 		if ((mask)& PROBE_N(7)) { stm32_configgpio(PROBE_7); } \
+// 		if ((mask)& PROBE_N(8)) { stm32_configgpio(PROBE_8); } \
+// 		if ((mask)& PROBE_N(9)) { stm32_configgpio(PROBE_9); } \
+// 	} while(0)
 
-# define PROBE(n,s)  do {stm32_gpiowrite(PROBE_##n,(s));}while(0)
-# define PROBE_MARK(n) PROBE(n,false);PROBE(n,true)
-#else
-# define PROBE_INIT(mask)
-# define PROBE(n,s)
-# define PROBE_MARK(n)
-#endif
+// # define PROBE(n,s)  do {stm32_gpiowrite(PROBE_##n,(s));}while(0)
+// # define PROBE_MARK(n) PROBE(n,false);PROBE(n,true)
+// #else
+// # define PROBE_INIT(mask)
+// # define PROBE(n,s)
+// # define PROBE_MARK(n)
+// #endif
 
 #endif  /*__NUTTX_CONFIG_MATEKH743SLIM_INCLUDE_BOARD_H  */
